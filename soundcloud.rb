@@ -77,7 +77,9 @@ EOT
           @page = @agent.get 'http://spreadsheets.google.com/embeddedform?key=tpSZ6ITsuuTeIpCpmjvuxqA'
           # submit to googlf
           form = @page.forms.first
-          form.fields.first.value = search.split(' ').last
+          tomb = search.split(' ')
+          tomb.shift
+          form.fields.first.value = tomb.join('-')
           @page = @agent.submit(form,form.buttons.first)
 
 
